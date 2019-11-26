@@ -134,3 +134,23 @@ nav.left-menu {
 .font-size-18 {
     font-size: 18px;
 }
+
+.text-center {
+    text-align: center;
+}
+
+.text-justified {
+    text-align: justify;
+}
+.img-small {
+    width: 140px;
+    height: 100px;
+}
+.img-medium {
+    width: 240px;
+    height: 200px;
+}
+.img-large {
+    width: 340px;
+    height: 300px;
+}
