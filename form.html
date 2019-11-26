@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<head>
+    <title>Tienda Online </title>
+    <link rel="icon" href="img/favicon.ico">
+    <!-- Styles -->
+    <link href="plugins/lightbox2/dist/css/lightbox.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <!-- Javascript -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="plugins/lightbox2/dist/js/lightbox.min.js"></script>
+</head>
+<body>
+    <div class="main-theme">
+        <nav class="left-menu">
+            <div class="logo-container">
+                <img src="img/FruitMix3_full_transparent.png" class="logo">
+            </div>
+            <div class="left-menu-inner">
+                <ul class="left-menu-list">
+                    <li class="list-menu-item"><a href="./index.html">Inicio</a></li>
+                    <li class="list-menu-item"><a href="./information.html">Quiénes somos</a></li>
+                    <li class="list-menu-item"><a href="./products.html">Productos</a></li>
+                    <li class="list-menu-item"><a href="./galery.html">Galeria</a></li>
+                    <li class="list-menu-item"><a href="./form.html">Formulario compra</a></li>
+                </ul>
+            </div>
+        </nav>
+        <nav class="top-menu">
+            <div class="menu">
+                <h1>Fruit Mix! Tienda Online </h1>
+            </div>
+        </nav>
+        <div class="content">
+            <div class="content-inner">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h1>Formulario de compra</h1>
+                    </div>
+                    <div class="panel-body">
+                        <form class="form" id="form1">
+                            <div class="form-group">
+                                <label class="form-label" for="product_value">Producto</label>
+                                <select type="select" id="product_value" class="form-control">
+                                    <option value="">Seleccionar</option>
+                                    <option value="1000">Helado Normal</option>
+                                    <option value="2000">Helado doble</option>
+                                    <option value="3000">Helado triple</option>
+                                    <option value="2500">Helado Bowl</option>
+                                    <option value="3500">Fruit Mix</option>
+                                    <option value="1000">Jugo Normal</option>
+                                    <option value="1000">Jugo Mediano Elegant</option>
+                                    <option value="1000">Jugo Extra grande</option>
+                                </select>    
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="product_quantity">Cantidad</label>
+                                <input type="number" id="product_quantity" class="form-control">
+                            </div>
+                            <div class="form-group">                                
+                                <div>
+                                    <label class="form-label">Agregados</label>
+                                    <label class="form-label">Salsas
+                                        <input type="checkbox" name="additional" value="200" class="form-control">
+                                    </label>
+                                    <label class="form-label"> Galletas
+                                        <input type="checkbox" name="additional" value="300" class="form-control">
+                                    </label>
+                                    <label class="form-label"> M&M
+                                        <input type="checkbox" name="additional" value="500" class="form-control">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="total">Total</label>
+                                <input type="number" id="total" readonly class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Comprar" class="btn btn-success">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function addExtras(){
+            var additionals = 0;
+            $('[name="additional"]').each(function(i, checkbox){
+                if($(checkbox).is(':checked')) additionals += parseInt($(checkbox).val()); 
+            });
+
+            return additionals;
+        }
+
+        $(function(){
+           $('.form-control').change(function(e){
+               var product = $('#product_value').val(),
+                    quantity = $('#product_quantity').val()
+                    additionals = addExtras();
+
+                if(product != "" && quantity != ""){
+                    var total = (product*quantity) + parseInt(additionals);
+                    $('#total').val(total);
+                }
+           }) 
+
+           $('#form1').submit(function(e){
+                if($('#product_value').val() !="" && $('#product_quantity').val() != "" && 
+                    $('#product_quantity').val != 0){
+                    alert('Gracias por su compra. el total es: '+ $('#total').val());
+                    return true;
+                }else{
+                    alert('Debe ingresar un producto y su cantidad');
+                    e.preventDefault();
+                }
+
+           })
+        });
+    </script>
+</body>
+</html>
